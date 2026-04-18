@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  
+  body {
+    @apply bg-carbon-900 text-white font-body antialiased;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(57, 255, 110, 0.03) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(59, 158, 255, 0.03) 0%, transparent 60%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-carbon-800; }
+  ::-webkit-scrollbar-thumb { @apply bg-carbon-400 rounded-full; }
+}
+
+@layer components {
+  .card {
+    @apply bg-carbon-800 border border-carbon-600 rounded-xl p-4;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-carbon-400 hover:bg-carbon-700 cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-neon-green text-carbon-900 font-semibold px-4 py-2 rounded-lg 
+           hover:bg-pitch-400 transition-colors duration-150 text-sm;
+  }
+  .btn-secondary {
+    @apply bg-carbon-600 text-white px-4 py-2 rounded-lg 
+           hover:bg-carbon-500 transition-colors duration-150 text-sm border border-carbon-400;
+  }
+  .btn-danger {
+    @apply bg-neon-red/10 text-neon-red border border-neon-red/30 px-4 py-2 rounded-lg 
+           hover:bg-neon-red/20 transition-colors duration-150 text-sm;
+  }
+  .input {
+    @apply bg-carbon-700 border border-carbon-500 rounded-lg px-3 py-2 text-white text-sm
+           focus:outline-none focus:border-neon-green/60 focus:ring-1 focus:ring-neon-green/20 
+           placeholder:text-carbon-300 w-full transition-colors;
+  }
+  .label {
+    @apply text-xs font-medium text-carbon-300 uppercase tracking-wider mb-1 block;
+  }
+  .badge {
+    @apply text-xs px-2 py-0.5 rounded-full font-mono font-medium;
+  }
+  .stat-card {
+    @apply card flex flex-col gap-1;
+  }
+  .section-title {
+    @apply font-display text-2xl tracking-wider text-white;
+  }
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium
+           transition-all duration-150 cursor-pointer;
+  }
+  .nav-item-active {
+    @apply bg-neon-green/10 text-neon-green border-l-2 border-neon-green;
+  }
+  .nav-item-inactive {
+    @apply text-carbon-300 hover:bg-carbon-700 hover:text-white;
+  }
+  .tag {
+    @apply text-xs bg-carbon-600 text-carbon-200 px-2 py-0.5 rounded;
+  }
+}
+
+/* Pitch SVG styles */
+.pitch-line { stroke: rgba(255,255,255,0.25); stroke-width: 1; fill: none; }
+.pitch-bg { fill: #1a3a1a; }
+.pitch-marking { fill: rgba(57, 255, 110, 0.08); }
+
+/* Drag handle */
+.draggable-player {
+  cursor: grab;
+  transition: transform 0.1s;
+}
+.draggable-player:active { cursor: grabbing; transform: scale(1.15); }
+
+/* Animate entrance */
+.page-enter { animation: fadeIn 0.35s ease-out both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heatmap */
+.heatmap-hot { fill: rgba(255, 59, 92, 0.7); }
+.heatmap-warm { fill: rgba(245, 230, 66, 0.5); }
+.heatmap-cool { fill: rgba(57, 255, 110, 0.3); }
